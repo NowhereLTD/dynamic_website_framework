@@ -1,4 +1,5 @@
 import { Router } from "../modules/routing/router.js"
+import * as Dialog from "../modules/dialog/dialogComponent.js"
 import * as SiteMenu from "../modules/site/siteMenu.js"
 
 let r = new Router({
@@ -30,3 +31,6 @@ document.getElementById('menuButton').addEventListener('click', () => {
         menuOpen = true
     }
 })
+
+let dialog = new Dialog.Dialog(Dialog.DIALOG_ALIGN_CENTER, Dialog.DIALOG_VALIGN_MIDDLE, 'Test', 80, 80, true, r.basePath, 'home')
+dialog.openDialog()

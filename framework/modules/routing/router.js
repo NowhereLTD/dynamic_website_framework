@@ -7,11 +7,16 @@ class Router {
         this.routerList = routerList
         this.basePath = LocationParser.getRootLocation()
         this.data = null
+        this.component = null
         SiteData.loadDefaults(this.basePath)
         this.goto('')
     }
 
     goto(path) {
+        if (this.component != null) {
+            console.log(this.component)
+            this.component.onDelete()
+        }
         let aPath = path.split('/')
         let bPath = path.split('/')
         path = ''
@@ -44,12 +49,15 @@ class Router {
         css.href = realPath + '/' + componentName + '.css'
         this.data = values
         let component = '../../../assets/components/' + componentName + '/' + componentName + '.js'
+        let cc = {}
         import(component)
             .then((module) => {
-                let cc = new module.SComponent(SiteData.getSiteData(realPath + '/' + componentName + '.html'))
+                cc = new module.SComponent(values, SiteData.getSiteData(realPath + '/' + componentName + '.html'))
                 cc.onInit()
             });
-    
+        setTimeout(() => {
+            this.component = cc
+        }, 20);
 
         document.getElementById('root').innerHTML = SiteData.getSiteData(realPath + '/' + componentName + '.html')
 

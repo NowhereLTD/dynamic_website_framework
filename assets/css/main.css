@@ -27,6 +27,13 @@
     z-index: 1;
 }
 
+#dialog {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
 @keyframes openMenu {
     from { width: 0 }
     to { width: 250px }
