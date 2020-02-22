@@ -5,17 +5,18 @@ class Router {
 
     constructor(/*JSON*/routerList) {
         this.routerList = routerList
-        this.now = null
-        this.last = null
+        this.basePath = LocationParser.getRootLocation()
         this.data = null
+        SiteData.loadDefaults(this.basePath)
+        this.goto('')
     }
 
     goto(path) {
-        this.last = this.now
-        this.now = path
         let aPath = path.split('/')
         let bPath = path.split('/')
         path = ''
+
+
         let values = []
         let componentName = ''
         aPath.forEach((el, i) => {
@@ -36,19 +37,22 @@ class Router {
             }
         }
         componentName = a.name;
-        let root = LocationParser.getRootLocation()
-        let locationPath = LocationParser.getRootLocation() + path.substring(1, path.length)
+        let locationPath = this.basePath + path.substring(1, path.length)
         window.history.pushState(null, '', locationPath)
-        let realPath = root + 'assets/components/' + componentName
+        let realPath = this.basePath + 'assets/components/' + componentName
         let css = document.getElementById('component_css')
         css.href = realPath + '/' + componentName + '.css'
         this.data = values
         let component = '../../../assets/components/' + componentName + '/' + componentName + '.js'
         import(component)
             .then((module) => {
-                module.init(values)
+                let cc = new module.SComponent(SiteData.getSiteData(realPath + '/' + componentName + '.html'))
+                cc.onInit()
             });
     
+
+        document.getElementById('root').innerHTML = SiteData.getSiteData(realPath + '/' + componentName + '.html')
+
     }
 
 }

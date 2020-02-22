@@ -1,0 +1,51 @@
+#header {
+    width: 100%;
+    height: 75px;
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+}
+
+#menuButton {
+    height: 75px;
+    width: 75px;
+    font-size: 50px;
+    text-align: center;
+    line-height: 75px;
+    cursor: pointer;
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+}
+
+#userIcon {
+    height: 55px;
+    width: 55px;
+    font-size: 50px;
+    text-align: center;
+    line-height: 55px;
+    margin: 8px;
+    cursor: pointer;
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    border-radius: 50%;
+    border: 2px solid black
+}
+
+#menuButton:hover {
+    color: white;
+    transition: 500ms;
+}
+
+@keyframes openButtonMenu {
+    from { transform: rotate(0deg) }
+    to { transform: rotate(90deg) }
+}
+
+@keyframes closeButtonMenu {
+    from { transform: rotate(90deg) }
+    to { transform: rotate(0deg) }
+}

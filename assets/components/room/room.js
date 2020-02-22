@@ -1,6 +1,15 @@
-function init(data) {
-    
+import { Component } from '../../../framework/modules/site/component.js'
+
+class SComponent extends Component {
+
+    constructor(html) {
+        super('Room', 'assets/components/room', html)
+    }
+
+    onInit() {
+
+    }
+
 }
 
-
-export { init }
+export { SComponent }

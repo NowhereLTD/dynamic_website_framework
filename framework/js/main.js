@@ -1,4 +1,5 @@
 import { Router } from "../modules/routing/router.js"
+import * as SiteMenu from "../modules/site/siteMenu.js"
 
 let r = new Router({
     '': {
@@ -16,4 +17,16 @@ let r = new Router({
     }
 })
 
-r.goto('room')
+SiteMenu.initMenu()
+
+
+var menuOpen = false
+document.getElementById('menuButton').addEventListener('click', () => {
+    if (menuOpen) {
+        SiteMenu.closeMenu()
+        menuOpen = false
+    } else {
+        SiteMenu.openMenu()
+        menuOpen = true
+    }
+})
