@@ -44,23 +44,11 @@ class Router {
         componentName = a.name;
         let locationPath = this.basePath + path.substring(1, path.length)
         window.history.pushState(null, '', locationPath)
-        let realPath = this.basePath + 'assets/components/' + componentName
-        let css = document.getElementById('component_css')
-        css.href = realPath + '/' + componentName + '.css'
         this.data = values
-        let component = '../../../assets/components/' + componentName + '/' + componentName + '.js'
-        let cc = {}
-        import(component)
-            .then((module) => {
-                cc = new module.SComponent(values, SiteData.getSiteData(realPath + '/' + componentName + '.html'))
-                cc.onInit()
-            });
-        setTimeout(() => {
-            this.component = cc
-        }, 20);
+        this.component = new this.routerList[aPath[0]].component(values, this.basePath)
 
-        document.getElementById('root').innerHTML = SiteData.getSiteData(realPath + '/' + componentName + '.html')
-
+        document.getElementById('root').innerHTML = SiteData.getSiteData(this.basePath + this.component.settings.path + '/' + this.component.settings.name.toLowerCase() + '.html')
+        this.component.onInit()
     }
 
 }

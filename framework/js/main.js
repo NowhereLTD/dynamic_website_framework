@@ -1,17 +1,22 @@
 import { Router } from "../modules/routing/router.js"
 import * as Dialog from "../modules/dialog/dialogComponent.js"
 import * as SiteMenu from "../modules/site/siteMenu.js"
-
+import { Home } from "../../assets/components/home/home.js"
+import { Room } from "../../assets/components/room/room.js"
+ 
 let r = new Router({
     '': {
-        name: 'home'
+        name: 'home',
+        component: Home
     },
     'room': {
         name: 'room',
+        component: Room,
         routes: 
         {
             ':id': {
                 name: 'room',
+                component: Room,
                 number: true
             }
         }
@@ -19,7 +24,6 @@ let r = new Router({
 })
 
 SiteMenu.initMenu()
-
 
 var menuOpen = false
 document.getElementById('menuButton').addEventListener('click', () => {
@@ -32,5 +36,7 @@ document.getElementById('menuButton').addEventListener('click', () => {
     }
 })
 
-let dialog = new Dialog.Dialog(Dialog.DIALOG_ALIGN_CENTER, Dialog.DIALOG_VALIGN_MIDDLE, 'Test', 80, 80, true, r.basePath, 'home')
-dialog.openDialog()
+let dialog = new Dialog.Dialog(Dialog.DIALOG_ALIGN_CENTER, Dialog.DIALOG_VALIGN_MIDDLE, 'Test', 100, 100, true, r.basePath, Home)
+document.getElementById('userIcon').addEventListener('click', () => {
+    dialog.open ? dialog.closeDialog() : dialog.openDialog()
+})

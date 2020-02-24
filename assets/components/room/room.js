@@ -1,9 +1,9 @@
 import { Component } from '../../../framework/modules/site/component.js'
 
-class SComponent extends Component {
+class Room extends Component {
 
-    constructor(data, html) {
-        super('Room', 'assets/components/room', html)
+    constructor(data, basePath, dialog) {
+        super('Room', 'assets/components/room', basePath, dialog)
     }
 
     onInit() {
@@ -12,4 +12,4 @@ class SComponent extends Component {
 
 }
 
-export { SComponent }
+export { Room }

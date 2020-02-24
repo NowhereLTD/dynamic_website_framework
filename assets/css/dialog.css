@@ -1,0 +1,38 @@
+#dialog {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 0;
+    height: 0;
+    visibility: hidden;
+}
+
+#dialog_header {
+    width: 100%;
+    height: 40px;
+    overflow: hidden;
+}
+
+#dialog_content {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+#dialog_actionbar {
+    width: 100%;
+    height: 50px;
+    overflow: hidden;
+}
+
+#dialog_actionbar > div {
+    position: absolute;
+    right: 15px;
+}

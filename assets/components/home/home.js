@@ -1,14 +1,15 @@
 import { Component } from '../../../framework/modules/site/component.js'
 
-class SComponent extends Component {
+class Home extends Component {
 
-    constructor(data, html) {
-        super('Home', 'assets/components/home', html)
+    constructor(data, basePath, dialog) {
+        super('Home', 'assets/components/home', basePath, dialog)
     }
 
     onInit() {
+        this.variables.title = "Hello"
     }
 
 }
 
-export { SComponent }
+export { Home }
